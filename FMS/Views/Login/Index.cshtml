@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+@model FMS.Models.LOGIN
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="~/Content/logincss/login.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,300,0,0" />
+</head>
+<body>
+
+    <div class="login-card-container">
+        <div class="login-card">
+            <div class="login-card-logo" style="margin-bottom: 0rem;">
+                <img src="~/Content/image/logo2.png" alt="logo" style="width:25%">
+            </div>
+            <div class="login-card-header">
+                <h1 style="margin-top: 0;" >Sign</h1>
+                <div>Please login to use platform</div>
+            </div>
+            @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="login-card-form">
+                    <div class="form-item">
+                        <span class="form-item-icon material-symbols-rounded">
+                            person
+                        </span>
+                        @Html.TextBoxFor(m =>m.C_Username, "", new { @class = " ", placeholder = "UserName" })
+                        @*<input type="text" placeholder="User Name" required autofocus>*@
+                    </div>
+                    <div class="form-item">
+                        <span class="form-item-icon material-symbols-rounded">lock</span>
+                        @Html.PasswordFor(m => m.C_Password, new { @class = " ", placeholder = "Enter Password" })
+                        @*<input type="password" placeholder="Enter Password" required>*@
+                    </div>
+                    <div class="form-item-other">
+                        <div class="checkbox">
+                            <input type="checkbox" id="remmberMeCheckbox">
+                            <label for="rememberMeCheckbox">Remember me</label>
+                        </div>
+                        <a href="#">forgot my password!</a>
+                    </div>
+                    <button type="submit" name="submit">Sign In</button>
+                </div>
+            }
+        </div>
+    </div>
+
+</body>
+</html>
+@if (ViewBag.error != null)
+            {
+                <script>
+                    alert('@ViewBag.error')
+                </script>
+            }

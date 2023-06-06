@@ -1,0 +1,59 @@
+.khungtable .container{
+    width: max-content;
+}
+
+.container .rowtext{
+    margin: 15px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rowtext p{
+    padding-top: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+    /* font-weight: bold; */
+}
+
+.rowtext input,
+.selectop{
+    width: 250px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.genderst {
+    width: 100%;
+    display: flex !important;
+    justify-content: space-around !important;
+}
+
+.check {
+    width: 15px !important;
+}
+
+
+.role{
+    display: flex;
+    align-items: center
+}
+
+.role p{
+    padding-top: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 85px;
+}
+
+.form-check .form-check-label{
+    margin-right: 20px;
+}
+
+.btn-acept{
+    display: flex;
+    justify-content: space-around;
+}

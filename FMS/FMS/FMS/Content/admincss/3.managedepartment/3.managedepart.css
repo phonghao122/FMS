@@ -1,0 +1,52 @@
+/*btn-add employee*/
+.btn-addemploy{
+    margin-top: 20px;
+    display: flex;
+}
+
+.btn-addemploy .btn-content{
+    margin-right: 20px;
+    width: max-content;
+    height: 50px;
+    background: #8ce3fd;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 17px;
+    /* font-weight: bold; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.btn-addemploy a{
+    text-decoration: none;
+}
+.btn-addemploy ion-icon{
+    margin-right: 10px;
+}
+/*end btn-add employee*/
+
+/*css cho table*/
+
+.khungtable table{
+    width: 100%;
+    border-collapse: collapse;
+    border-color: #ddd;
+}
+
+table thead{
+    background-color: #dff0d8;
+}
+
+.khungtable table th{
+    width: auto;
+    padding: 5px 20px;
+}
+/*end css cho table*/
+
+.navigation ul li a .icon {
+    font-size: 2.75rem !important;
+}
+.navigation ul li a{
+    font-size: 1.5rem !important;
+}

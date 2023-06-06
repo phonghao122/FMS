@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_FMSModelStoreContainer" CdmEntityContainer="db_FMSEntities">
+    <EntitySetMapping Name="DEPARTMENT">
+      <EntityTypeMapping TypeName="db_FMSModel.DEPARTMENT">
+        <MappingFragment StoreEntitySet="DEPARTMENT">
+          <ScalarProperty Name="C_Department_id" ColumnName="_Department_id" />
+          <ScalarProperty Name="C_Department_Name" ColumnName="_Department_Name" />
+          <ScalarProperty Name="C_Department_Phone" ColumnName="_Department_Phone" />
+          <ScalarProperty Name="C_Department_Address" ColumnName="_Department_Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FACE">
+      <EntityTypeMapping TypeName="db_FMSModel.FACE">
+        <MappingFragment StoreEntitySet="FACE">
+          <ScalarProperty Name="C_Face_id" ColumnName="_Face_id" />
+          <ScalarProperty Name="C_Face1" ColumnName="_Face1" />
+          <ScalarProperty Name="C_Face2" ColumnName="_Face2" />
+          <ScalarProperty Name="C_Face3" ColumnName="_Face3" />
+          <ScalarProperty Name="C_Face4" ColumnName="_Face4" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INGREDIENT">
+      <EntityTypeMapping TypeName="db_FMSModel.INGREDIENT">
+        <MappingFragment StoreEntitySet="INGREDIENT">
+          <ScalarProperty Name="C_Material_id" ColumnName="_Material_id" />
+          <ScalarProperty Name="C_Material_name" ColumnName="_Material_name" />
+          <ScalarProperty Name="C_Quantity_I" ColumnName="_Quantity_I" />
+          <ScalarProperty Name="C_Unit" ColumnName="_Unit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOGIN">
+      <EntityTypeMapping TypeName="db_FMSModel.LOGIN">
+        <MappingFragment StoreEntitySet="LOGIN">
+          <ScalarProperty Name="C_Username" ColumnName="_Username" />
+          <ScalarProperty Name="C_Password" ColumnName="_Password" />
+          <ScalarProperty Name="C_Staff_id" ColumnName="_Staff_id" />
+          <ScalarProperty Name="C_Role" ColumnName="_Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MENU">
+      <EntityTypeMapping TypeName="db_FMSModel.MENU">
+        <MappingFragment StoreEntitySet="MENU">
+          <ScalarProperty Name="C_Food_id" ColumnName="_Food_id" />
+          <ScalarProperty Name="C_Food_name" ColumnName="_Food_name" />
+          <ScalarProperty Name="C_Description" ColumnName="_Description" />
+          <ScalarProperty Name="C_Imagefood" ColumnName="_Imagefood" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDERS">
+      <EntityTypeMapping TypeName="db_FMSModel.ORDERS">
+        <MappingFragment StoreEntitySet="ORDERS">
+          <ScalarProperty Name="C_Order_id" ColumnName="_Order_id" />
+          <ScalarProperty Name="C_Food_id" ColumnName="_Food_id" />
+          <ScalarProperty Name="C_Staff_id" ColumnName="_Staff_id" />
+          <ScalarProperty Name="C_Shift_id" ColumnName="_Shift_id" />
+          <ScalarProperty Name="C_Order_date" ColumnName="_Order_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SPLIT_TIME">
+      <EntityTypeMapping TypeName="db_FMSModel.SPLIT_TIME">
+        <MappingFragment StoreEntitySet="SPLIT_TIME">
+          <ScalarProperty Name="C_Shift_id" ColumnName="_Shift_id" />
+          <ScalarProperty Name="C_Shift_name" ColumnName="_Shift_name" />
+          <ScalarProperty Name="C_Time_in" ColumnName="_Time_in" />
+          <ScalarProperty Name="C_Time_out" ColumnName="_Time_out" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STAFF">
+      <EntityTypeMapping TypeName="db_FMSModel.STAFF">
+        <MappingFragment StoreEntitySet="STAFF">
+          <ScalarProperty Name="C_Staff_id" ColumnName="_Staff_id" />
+          <ScalarProperty Name="C_Staff_name" ColumnName="_Staff_name" />
+          <ScalarProperty Name="C_Birthday" ColumnName="_Birthday" />
+          <ScalarProperty Name="C_Gender" ColumnName="_Gender" />
+          <ScalarProperty Name="C_Identity_card" ColumnName="_Identity_card" />
+          <ScalarProperty Name="C_Position" ColumnName="_Position" />
+          <ScalarProperty Name="C_phone_number" ColumnName="_phone_number" />
+          <ScalarProperty Name="C_Ward" ColumnName="_Ward" />
+          <ScalarProperty Name="C_District" ColumnName="_District" />
+          <ScalarProperty Name="C_City" ColumnName="_City" />
+          <ScalarProperty Name="C_Department_id" ColumnName="_Department_id" />
+          <ScalarProperty Name="C_Face_id" ColumnName="_Face_id" />
+          <ScalarProperty Name="C_Image" ColumnName="_Image" />
+          <ScalarProperty Name="C_Ethnic" ColumnName="_Ethnic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUPPLIER">
+      <EntityTypeMapping TypeName="db_FMSModel.SUPPLIER">
+        <MappingFragment StoreEntitySet="SUPPLIER">
+          <ScalarProperty Name="C_Supplier_id" ColumnName="_Supplier_id" />
+          <ScalarProperty Name="C_Supplier_name" ColumnName="_Supplier_name" />
+          <ScalarProperty Name="C_Supplier_phone" ColumnName="_Supplier_phone" />
+          <ScalarProperty Name="C_Supplier_address" ColumnName="_Supplier_address" />
+          <ScalarProperty Name="C_Material_id" ColumnName="_Material_id" />
+          <ScalarProperty Name="C_Quantity_S" ColumnName="_Quantity_S" />
+          <ScalarProperty Name="C_Unit" ColumnName="_Unit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="db_FMSModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SPLIT_SHIFTS">
+      <EntityTypeMapping TypeName="db_FMSModel.SPLIT_SHIFTS">
+        <MappingFragment StoreEntitySet="SPLIT_SHIFTS">
+          <ScalarProperty Name="C_Shift_id" ColumnName="_Shift_id" />
+          <ScalarProperty Name="C_Staff_id" ColumnName="_Staff_id" />
+          <ScalarProperty Name="C_month" ColumnName="_month" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

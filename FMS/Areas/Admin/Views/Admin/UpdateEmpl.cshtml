@@ -1,0 +1,306 @@
+﻿@using FMS.Models
+@model UserValidate
+@{
+    Layout = "~/Views/Shared/_logoutlayout.cshtml";
+    ViewBag.Title = "Update Employee";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Employee</title>
+    <link rel="stylesheet" href="~/Content/admincss/menuadim/homepageadmin.css">
+    <link rel="stylesheet" href="~/Content/admincss/menuadim/manageall.css">
+    <link rel="stylesheet" href="~/Content/admincss/2.manageemployee/2.1addvsupdateemployee.css">
+    <link rel="stylesheet" href="~/Content/admincss/2.manageemployee/2.manageemployee.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- html cho phần menu -->
+    <div class="navigation open">
+        <div class="menuToggle">Admin</div>
+        <div class="main-menu">
+            <div class="dropdown">
+                <input type="text" class="text02" readonly placeholder="Admin">
+                <div class="options">
+                    <div class="change-option-admin" onmouseover="show('Admin')">Admin</div>
+                    <div class="change-option-manage" onmouseover="show('Management')">Management</div>
+                    <div class="change-option-cheif" onmouseover="show('Cheif')">Cheif</div>
+                    <div class="change-option-staff" onmouseover="show('Staff')">Staff</div>
+                </div>
+            </div>
+            <div class="menu-option">
+                <ul class="admin showadmin">
+                    <li class="list" style="--clr:#f44336;">
+                        <a href="@Url.Action("ManageAcc","Admin")">
+                            <span class="icon"><ion-icon name="desktop-outline"></ion-icon></span>
+                            <span class="text">Manage Account</span>
+                        </a>
+                    </li>
+                    <li class="list  active" style="--clr:#ffa117;">
+                        <a href="@Url.Action("ManageEmploy","Admin")">
+                            <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                            <span class="text">Manage Employee</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#4f088a;">
+                        <a href="@Url.Action("ManageDepart","Admin")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Manage Department</span>
+                        </a>
+                    </li>
+                    <li class="list " style="--clr:#0fc70f;">
+                        <a href="@Url.Action("FaceID","Admin")">
+                            <span class="icon"><ion-icon name="grid-outline"></ion-icon></span>
+                            <span class="text">Manage Face Pattern</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="manage">
+                    <li class="list" style="--clr:#f44336;">
+                        <a href="@Url.Action("ManagePro","Manager")">
+                            <span class="icon"><ion-icon name="newspaper-outline"></ion-icon></span>
+                            <span class="text">Manage Profile</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#ffa117;">
+                        <a href="@Url.Action("ManageWorkshift","Manager")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Manage WorkShift</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#4f088a;">
+                        <a href="@Url.Action("TimeKeeping","Manager")">
+                            <span class="icon"><ion-icon name="today-outline"></ion-icon></span>
+                            <span class="text">TimeKeeping</span>
+                        </a>
+                    </li>
+                    <li class="list " style="--clr:#2196f3;">
+                        <a href="@Url.Action("ReportStatis","Manager")">
+                            <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
+                            <span class="text">Report Statistics</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="cheif">
+                    <li class="list" style="--clr:#f44336;">
+                        <a href="@Url.Action("ManageMenu","Chef")">
+                            <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                            <span class="text">Manage Menu</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#ffa117;">
+                        <a href="@Url.Action("ManageSupp","Chef")">
+                            <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                            <span class="text">Manage Supplier</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#4f088a;">
+                        <a href="@Url.Action("ManageMaterial","Chef")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Manage Material</span>
+                        </a>
+                    </li>
+                    <li class="list " style="--clr:#0fc70f;">
+                        <a href="@Url.Action("ViewRegis","Chef")">
+                            <span class="icon"><ion-icon name="clipboard-outline"></ion-icon></span>
+                            <span class="text">View Registration</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="staff">
+                    <li class="list" style="--clr:#f44336;">
+                        <a href="@Url.Action("Order", "Staff")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Order</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#ffa117;">
+                        <a href="@Url.Action("PersonalPro", "Staff")">
+                            <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                            <span class="text">Personal profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end menu -->
+    <!-- html cho phần manage Account -->
+    <div class="home-main open3">
+        <div class="header-content">
+            <p>Update Employee</p>
+        </div>
+        @using (Html.BeginForm("UpdateEmpl", "Admin", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="table-overview">
+                <div class="khungtable">
+                    <div class="container">
+                        <div class="rowtext">
+                            <p>Employee ID: </p>
+                            <div>
+                                @*@Html.TextBoxFor(m => m.StaffID, "", new { @class = " ", placeholder = "Employee ID" })*@
+                                <input type="text" name="StaffID" id="StaffID" style="display:block" required placeholder="StaffID" value="@Model.StaffID">
+                                <label class="control-label text-danger">
+                                    @ViewBag.err
+                                    @Html.ValidationMessageFor(model => model.StaffID)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="rowtext">
+                            <p>Name </p>
+                            <div>
+                                @*@Html.TextBoxFor(m => m.StaffName, "", new { @class = " ", placeholder = "Name" })*@
+                                <input type="text" name="StaffName" id="StaffName" style="display:block" required placeholder="StaffName" value="@Model.StaffName">
+                                <label class="control-label text-danger">
+                                    @ViewBag.err
+                                    @Html.ValidationMessageFor(model => model.StaffID)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="rowtext">
+                            <p style="margin-right: 57px;">Birth Day</p>
+                            <input value="@String.Format("{0:dd/MM/yyyy}", @Model.Birthday)"
+                                   type="text" name="Birthday"
+                                   placeholder="DD-MM-YYYY"
+                                   title="Nhập đúng định dạng DD/MM/YYYY" />
+                            @Html.ValidationMessageFor(model => model.Birthday)
+                            @*@Html.TextBoxFor(m => m.Birthday, "", new { @class = " ", placeholder = "Day of birth" })*@
+                            @*<input type="text">*@
+                        </div>
+                        <div class="rowtext">
+                            <p>Phone Number</p>
+                            @Html.TextBoxFor(m => m.PhoneNumber, "", new { @class = " ", placeholder = "Phone Number" })
+                            @*<input type="text">*@
+                        </div>
+                        <div class="rowtext">
+                            <p>Position</p>
+                            @Html.TextBoxFor(m => m.Position, "", new { @class = " ", placeholder = "Position" })
+                            @*<input type="text">*@
+                        </div>
+                        <div class="rowtext">
+                            <p>Gender </p>
+                            <div class=" genderst" style="width: 100%; display: flex !important; justify-content: space-around !important;">
+                                <div class="op">
+                                    <input type="radio" name="gender" class="check" style="width: 15px !important;" value="true">
+                                    <label for="">Nam</label>
+                                </div>
+                            </div>
+                            <div class=" genderst" style="width: 100%; display: flex !important; justify-content: space-around !important;">
+                                <div class="op">
+                                    <input type="radio" name="gender" class="check" style="width: 15px !important;" value="false">
+                                    <label for="">Nữ</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rowtext">
+                            <p>Identity Card </p>
+                            @Html.TextBoxFor(m => m.IdentityCard, "", new { @class = " ", placeholder = "Identity Card" })
+                            @*<input type="text">*@
+                        </div>
+                        <div class="rowtext">
+                            <p>Ward </p>
+                            @Html.TextBoxFor(m => m.Ward, "", new { @class = " ", placeholder = "Ward" })
+                            @*<input type="text">*@
+                        </div>
+                        <div class="rowtext">
+                            <p>District </p>
+                            @Html.TextBoxFor(m => m.District, "", new { @class = " ", placeholder = "District" })
+                            @*<input type="text">*@
+                        </div>
+                        <div class="rowtext">
+                            <p>City </p>
+                            @Html.TextBoxFor(m => m.City, "", new { @class = " ", placeholder = "City" })
+                            @*<input type="text">*@
+                        </div>
+                        <div class="rowtext">
+                            <p>Department ID </p>
+                            @{
+                                db_FMSEntities db = new db_FMSEntities();
+                                var phongban = db.DEPARTMENT.ToList();
+                            }
+                            <select name="DepartmentID" class="selectop" style="width: 250px; padding: 5px 10px; border-radius: 5px; border: 1px solid #ccc; outline: none;">
+                                @foreach (var item in phongban)
+                                {
+                                    <option value="@item.C_Department_id.ToString()" selected>@item.C_Department_Name</option>
+                                }
+                            </select>
+                            @*<input type="text">*@
+                        </div>
+                        <div class="btn-acept">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <a class="btn btn-danger" href="@Url.Action("ManageEmploy","Admin")">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        
+    </div>
+    <!-- end phần manage Account -->
+
+    <script>
+
+        // script cho phần profile
+        let menuToggleprofile = document.querySelector('.menuToggle-profile');
+        let navigationprofile = document.querySelector('.navigation-profile')
+        menuToggleprofile.onclick = function () {
+            navigationprofile.classList.toggle('active')
+        }
+
+        // script cho phần option role
+        function show(a) {
+            document.querySelector('.navigation.open .text02').value = a;
+        }
+
+        let dropdown = document.querySelector('.dropdown');
+        dropdown.onclick = function () {
+            dropdown.classList.toggle('dropdownactive');
+        }
+
+        //script cho phần đổi menu
+        const changeadmin = document.querySelector('.change-option-admin');
+        const changemanage = document.querySelector('.change-option-manage');
+        const changecheif = document.querySelector('.change-option-cheif');
+        const changestaff = document.querySelector('.change-option-staff');
+        const admin = document.querySelector('.admin');
+        const manage = document.querySelector('.manage');
+        const cheif = document.querySelector('.cheif');
+        const staff = document.querySelector('.staff');
+
+        changeadmin.onclick = function () {
+            admin.classList.add('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changemanage.onclick = function () {
+            admin.classList.remove('showadmin');
+            manage.classList.add('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changecheif.onclick = function () {
+            admin.classList.remove('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.add('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changestaff.onclick = function () {
+            admin.classList.remove('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.add('showstaff');
+        }
+
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

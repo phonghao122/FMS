@@ -1,0 +1,105 @@
+﻿.header {
+    position: fixed;
+}
+
+.home-main {
+    padding-top: 6%;
+}
+
+.form-control {
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.khungtable table {
+    width: 55%;
+    margin-left: 36px;
+}
+
+    .khungtable table tr {
+        width: 100%;
+    }
+
+
+
+tr {
+    height: 42px;
+}
+
+label {
+    padding-right: 20px;
+}
+
+.khung {
+    width: 30%;
+    height: 90%;
+}
+
+    .khung .amount {
+        font-size: 3rem;
+    }
+
+.btn-confirm {
+    padding: 4px 8px;
+    margin-top: 20px;
+}
+
+    .btn-confirm:hover {
+        cursor: pointer;
+    }
+
+.img-person {
+    display: flex;
+    width: 40%;
+    /* align-items: center; */
+    justify-content: center;
+    margin-left: 40px;
+    margin-top: 35px;
+}
+
+    .img-person img {
+        width: 90%;
+        height: 64%;
+        border-radius: 50%;
+        margin-bottom: 132px;
+    }
+
+.listNotReceived {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.form-horizontal {
+    width: 50%;
+}
+
+.width-10 {
+    width: 10% !important;
+}
+
+.personal-left {
+    width: 100%;
+    display: block;
+}
+
+.left-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.control-lable {
+    width: 35%;
+}
+
+.control-input {
+    width: 70%;
+}
+
+    .control-input input {
+        width: 100%;
+    }

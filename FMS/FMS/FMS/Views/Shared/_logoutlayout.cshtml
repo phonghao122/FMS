@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+@using FMS.Models
+
+@{
+    db_FMSEntities DB = new db_FMSEntities();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/admincss/menuadim/homepageadmin.css">
+</head>
+<body>
+    <div class="header open2">
+        <div class="header-overview">
+            <div class="navigation-profile">
+                <div class="userBx">
+                    <div class="imgBx">
+                        <img src="~/Content/" alt="ảnh đại diện">
+                    </div>
+                    <p class="username">name</p>
+                </div>
+                <div class="menuToggle-profile"></div>
+                <ul class="menu">
+                    <li>
+                        <a href="#"><ion-icon name="person-outline"></ion-icon> My Profile</a>
+                    </li>
+                    <li>
+                        <a href="#"><ion-icon name="notifications-outline"></ion-icon> Notifications</a>
+                    </li>
+                    <li>
+                        <a href="/" style="display:flex"><ion-icon name="log-out-outline"></ion-icon>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody();
+    <script>
+        let menuToggleprofile = document.querySelector('.menuToggle-profile');
+        let navigationprofile = document.querySelector('.navigation-profile')
+        menuToggleprofile.onclick = function () {
+            navigationprofile.classList.toggle('active')
+        }
+    </script>
+</body>
+</html>
+

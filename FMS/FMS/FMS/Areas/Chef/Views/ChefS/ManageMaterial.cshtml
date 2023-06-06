@@ -1,0 +1,168 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_logoutlayout.cshtml";
+    ViewBag.Title = "Manage Material";
+}
+@using FMS.Models
+@model List<INGREDIENT>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Material</title>
+    <link rel="stylesheet" href="~/Content/admincss/menuadim/homepageadmin.css">
+    <link rel="stylesheet" href="~/Content/admincss/menuadim/manageall.css">
+    <link rel="stylesheet" href="~/Content/admin/3.chef/2.managesupplier/2.managespplier.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+<body>
+    <!-- html cho phần menu -->
+    <div class="navigation open">
+        <div class="menuToggle">Chef</div>
+        <div class="main-menu">
+            <div class="menu-option">
+                <ul class="cheif showcheif">
+                    <li class="list" style="--clr:#f44336;">
+                        <a href="@Url.Action("ManageMenu","ChefS")">
+                            <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                            <span class="text">Manage Menu</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#ffa117;">
+                        <a href="@Url.Action("ManageSupp","ChefS")">
+                            <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                            <span class="text">Manage Supplier</span>
+                        </a>
+                    </li>
+                    <li class="list active" style="--clr:#4f088a;">
+                        <a href="@Url.Action("ManageMaterial","ChefS")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Manage Material</span>
+                        </a>
+                    </li>
+                    <li class="list " style="--clr:#0fc70f;">
+                        <a href="@Url.Action("ViewRegis","ChefS")">
+                            <span class="icon"><ion-icon name="clipboard-outline"></ion-icon></span>
+                            <span class="text">View Registration</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end menu -->
+
+    <div class="home-main open3">
+        <div class="header-content">
+            <p>Manage Material</p>
+        </div>
+        <div class="btn-addemploy">
+            <a href="@Url.Action("Addmaterial","ChefS")"><div class="btn-content"><ion-icon name="person-add-outline"></ion-icon>Add Material</div></a>
+            <button><div class="btn-content"><ion-icon name="document-text-outline"></ion-icon>Print Excel filee</div></button>
+        </div>
+        <div class="table-overview">
+            <div class="khungtable">
+                <table border="1">
+                    <thead>
+                        <tr class="success">
+                            <th>
+                                Material ID
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Quantity
+                            </th>
+                            <th>
+                                Unit
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.C_Material_id</th>
+                                <th>@item.C_Material_name</th>
+                                <th>@item.C_Quantity_I</th>
+                                <th>@item.C_Unit</th>
+                                <th>
+                                    <a href="@Url.Action("Updatematerial","ChefS", new { @id = @item.C_Material_id })")><div class=" btn btn-warning">Update</div></a>
+                                    <a href="@Url.Action("Deletematerial","ChefS", new { @id = @item.C_Material_id })" )><div class=" btn btn-danger">Delete</div></a>
+                                </th>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- end phần manage Account -->
+
+    <script>
+        // script cho phần profile
+        let menuToggleprofile = document.querySelector('.menuToggle-profile');
+        let navigationprofile = document.querySelector('.navigation-profile')
+        menuToggleprofile.onclick = function(){
+            navigationprofile.classList.toggle('active')
+        }
+
+        // script cho phần option role
+        function show(a){
+           document.querySelector('.navigation.open .text02').value = a;
+        }
+
+        let dropdown = document.querySelector('.dropdown');
+        dropdown.onclick = function(){
+            dropdown.classList.toggle('dropdownactive');
+        }
+
+        //script cho phần đổi menu
+        const changeadmin = document.querySelector('.change-option-admin');
+        const changemanage = document.querySelector('.change-option-manage');
+        const changecheif = document.querySelector('.change-option-cheif');
+        const changestaff = document.querySelector('.change-option-staff');
+        const admin = document.querySelector('.admin');
+        const manage = document.querySelector('.manage');
+        const cheif = document.querySelector('.cheif');
+        const staff = document.querySelector('.staff');
+
+        changeadmin.onclick = function(){
+            admin.classList.add('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changemanage.onclick = function(){
+            admin.classList.remove('showadmin');
+            manage.classList.add('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changecheif.onclick = function(){
+            admin.classList.remove('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.add('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changestaff.onclick = function(){
+            admin.classList.remove('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.add('showstaff');
+        }
+
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

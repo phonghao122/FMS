@@ -1,0 +1,331 @@
+﻿@using FMS.Models
+@model UserValidate
+
+@{
+    Layout = "~/Views/Shared/_logoutlayout.cshtml";
+    ViewBag.Title = "Personal profile";
+}
+
+@{
+    db_FMSEntities DB = new db_FMSEntities();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal profile</title>
+    <link rel="stylesheet" href="~/Content/admincss/menuadim/homepageadmin.css">
+    <link href="~/Content/admincss/menuadim/manageall.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/admin/4.staff/person.css">
+
+</head>
+<body>
+    <!-- html cho phần menu -->
+    <div class="navigation open">
+        <div class="menuToggle">Admin</div>
+        <div class="main-menu">
+            <div class="dropdown">
+                <input type="text" class="text02" readonly placeholder="Dropdown Menu">
+                <div class="options">
+                    <div class="change-option-admin" onmouseover="show('Admin')">Admin</div>
+                    <div class="change-option-manage" onmouseover="show('Management')">Management</div>
+                    <div class="change-option-cheif" onmouseover="show('Cheif')">Cheif</div>
+                    <div class="change-option-staff" onmouseover="show('Staff')">Staff</div>
+                </div>
+            </div>
+            <div class="menu-option">
+                <ul class="admin">
+                    <li class="list " style="--clr:#f44336;">
+                        <a href="@Url.Action("ManageAcc","Admin")">
+                            <span class="icon"><ion-icon name="desktop-outline"></ion-icon></span>
+                            <span class="text">Manage Account</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#ffa117;">
+                        <a href="@Url.Action("ManageEmploy","Admin")">
+                            <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                            <span class="text">Manage Employee</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#4f088a;">
+                        <a href="@Url.Action("ManageDepart","Admin")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Manage Department</span>
+                        </a>
+                    </li>
+                    <li class="list " style="--clr:#0fc70f;">
+                        <a href="@Url.Action("FaceID","Admin")">
+                            <span class="icon"><ion-icon name="grid-outline"></ion-icon></span>
+                            <span class="text">Manage Face Pattern</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="manage">
+                    <li class="list" style="--clr:#f44336;">
+                        <a href="@Url.Action("ManagePro","Manager")">
+                            <span class="icon"><ion-icon name="newspaper-outline"></ion-icon></span>
+                            <span class="text">Manage Profile</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#ffa117;">
+                        <a href="@Url.Action("ManageWorkshift","Manager")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Manage WorkShift</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#4f088a;">
+                        <a href="@Url.Action("TimeKeeping","Manager")">
+                            <span class="icon"><ion-icon name="today-outline"></ion-icon></span>
+                            <span class="text">TimeKeeping</span>
+                        </a>
+                    </li>
+                    <li class="list " style="--clr:#2196f3;">
+                        <a href="@Url.Action("ReportStatis","Manager")">
+                            <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
+                            <span class="text">Report Statistics</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="cheif">
+                    <li class="list" style="--clr:#f44336;">
+                        <a href="@Url.Action("ManageMenu","Chef")">
+                            <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                            <span class="text">Manage Menu</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#ffa117;">
+                        <a href="@Url.Action("ManageSupp","Chef")">
+                            <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                            <span class="text">Manage Supplier</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#4f088a;">
+                        <a href="@Url.Action("ManageMaterial","Chef")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Manage Material</span>
+                        </a>
+                    </li>
+                    <li class="list " style="--clr:#0fc70f;">
+                        <a href="@Url.Action("ViewRegis","Chef")">
+                            <span class="icon"><ion-icon name="clipboard-outline"></ion-icon></span>
+                            <span class="text">View Registration</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="staff showstaff">
+                    <li class="list" style="--clr:#f44336;">
+                        <a href="@Url.Action("Order", "Staff")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Order</span>
+                        </a>
+                    </li>
+                    <li class="list active" style="--clr:#ffa117;">
+                        <a href="@Url.Action("PersonalPro", "Staff")">
+                            <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                            <span class="text">Personal profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end menu -->
+    <!-- html cho phần nội dung -->
+    <div class="home-main open3">
+        <div class="header-content">
+            <p>Personal profile</p>
+        </div>
+        @using (Html.BeginForm("PersonalPro", "Staff", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="table-overview">
+                <div class="khungtable">
+                    <table>
+                        <tr>
+                            <td>Full Name</td>
+                            <td>
+                                <input type="text" name="StaffName" placeholder="Name" required id="" class="form-control col-half width-50" value="@Model.StaffName">
+                                @ViewBag.err
+                                @Html.ValidationMessageFor(model => model.StaffName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Birthday</td>
+                            <td>
+                                <input class="form-control col-half width-50"
+                                       value="@String.Format("{0:dd-MM-yyyy}", @Model.Birthday)"
+                                       type="text" name="Birthday"
+                                       placeholder="DD-MM-YYYY"
+                                       title="Nhập đúng định dạng DD-MM-YYYY" />
+                                @Html.ValidationMessageFor(model => model.Birthday)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td>
+                                <input type="text" name="City" placeholder="City" required id="" class="form-control col-half width-50" value="@Model.City">
+                                @ViewBag.err
+                                @Html.ValidationMessageFor(model => model.City)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>District</td>
+                            <td>
+                                <input type="text" name="District" placeholder="District" required id="" class="form-control col-half width-50" value="@Model.District">
+                                @ViewBag.err
+                                @Html.ValidationMessageFor(model => model.District)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ward</td>
+                            <td>
+                                <input type="text" name="Ward" placeholder="Ward" required id="" class="form-control col-half width-50" value="@Model.Ward">
+                                @ViewBag.err
+                                @Html.ValidationMessageFor(model => model.Ward)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Avatar</td>
+                            <td>
+                                <input type="file" name="Image" placeholder="Avatar" class="form-control col-half width-50" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>
+                                @{ string check0 = string.Empty;
+                                    string check1 = string.Empty;
+                                    switch (@Model.Gender)
+                                    {
+                                        case true:
+                                            check0 = "checked";
+                                            break;
+                                        case false:
+                                            check1 = "checked";
+                                            break;
+                                    }
+                                }
+                                <input type="radio" name="Gender" value="true" @check0>
+                                <label for="">Male</label>
+                                <input type="radio" name="Gender" value="false" @check1>
+                                <label for="">Female</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ethnic</td>
+                            <td>
+                                <input type="text" name="Ethnic" placeholder="Ethnic" required id="" class="form-control col-half " value="@Model.Ethnic">
+                                @ViewBag.err
+                                @Html.ValidationMessageFor(model => model.Ethnic)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Number Phone</td>
+                            <td>
+                                <input type="text" name="PhoneNumber" placeholder="Number Phone" required id="" class="form-control col-half " value="@Model.PhoneNumber">
+                                @ViewBag.err
+                                @Html.ValidationMessageFor(model => model.PhoneNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Department</td>
+                            <td>
+                                @*<input type="text" name="" placeholder="Name" required id="" class="form-control col-half">*@
+                                @{ var depart = DB.DEPARTMENT.ToList(); }
+                                <select name="DepartmentID" class="form-control col-half ">
+                                    @foreach (var item in depart)
+                                    {
+                                        <option value="@item.C_Department_id.ToString()" selected>@item.C_Department_Name</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Identification Card</td>
+                            <td>
+                                <input type="text" name="IdentityCard" placeholder="Identification Card" required id="" class="form-control col-half " value="@Model.IdentityCard">
+                                @ViewBag.err
+                                @Html.ValidationMessageFor(model => model.IdentityCard)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button type="submit" class="btn-confirm">Confirm</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="img-person">
+                        <img src="~/Content/image/@Model.Image" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+    <!-- end nội dung -->
+
+    <script>
+        // script cho phần profile
+        let menuToggleprofile = document.querySelector('.menuToggle-profile');
+        let navigationprofile = document.querySelector('.navigation-profile')
+        menuToggleprofile.onclick = function () {
+            navigationprofile.classList.toggle('active')
+        }
+
+        // script cho phần option role
+        function show(a) {
+            document.querySelector('.navigation.open .text02').value = a;
+        }
+
+        let dropdown = document.querySelector('.dropdown');
+        dropdown.onclick = function () {
+            dropdown.classList.toggle('dropdownactive');
+        }
+
+        //script cho phần đổi menu
+        const changeadmin = document.querySelector('.change-option-admin');
+        const changemanage = document.querySelector('.change-option-manage');
+        const changecheif = document.querySelector('.change-option-cheif');
+        const changestaff = document.querySelector('.change-option-staff');
+        const admin = document.querySelector('.admin');
+        const manage = document.querySelector('.manage');
+        const cheif = document.querySelector('.cheif');
+        const staff = document.querySelector('.staff');
+
+        changeadmin.onclick = function () {
+            admin.classList.add('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changemanage.onclick = function () {
+            admin.classList.remove('showadmin');
+            manage.classList.add('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changecheif.onclick = function () {
+            admin.classList.remove('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.add('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changestaff.onclick = function () {
+            admin.classList.remove('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.add('showstaff');
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

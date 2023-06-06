@@ -1,0 +1,237 @@
+﻿@using FMS.Models
+@model FoodValidate
+@{
+    Layout = "~/Views/Shared/_logoutlayout.cshtml";
+    ViewBag.Title = "Create food";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create food</title>
+    <link rel="stylesheet" href="~/Content/admincss/menuadim/homepageadmin.css">>
+    <link rel="stylesheet" href="~/Content/admincss/menuadim/manageall.css">
+    <link rel="stylesheet" href="~/Content/admin/4.staff/orderfood.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <!-- html cho phần menu -->
+    <div class="navigation open">
+        <div class="menuToggle">Admin</div>
+        <div class="main-menu">
+            <div class="dropdown">
+                <input type="text" class="text02" readonly placeholder="Dropdown Menu">
+                <div class="options">
+                    <div class="change-option-admin" onmouseover="show('Admin')">Admin</div>
+                    <div class="change-option-manage" onmouseover="show('Management')">Management</div>
+                    <div class="change-option-cheif" onmouseover="show('Cheif')">Cheif</div>
+                    <div class="change-option-staff" onmouseover="show('Staff')">Staff</div>
+                </div>
+            </div>
+            <div class="menu-option">
+                <ul class="admin">
+                    <li class="list " style="--clr:#f44336;">
+                        <a href="@Url.Action("ManageAcc","Admin")">
+                            <span class="icon"><ion-icon name="desktop-outline"></ion-icon></span>
+                            <span class="text">Manage Account</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#ffa117;">
+                        <a href="@Url.Action("ManageEmploy","Admin")">
+                            <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                            <span class="text">Manage Employee</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#4f088a;">
+                        <a href="@Url.Action("ManageDepart","Admin")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Manage Department</span>
+                        </a>
+                    </li>
+                    <li class="list " style="--clr:#0fc70f;">
+                        <a href="@Url.Action("FaceID","Admin")">
+                            <span class="icon"><ion-icon name="grid-outline"></ion-icon></span>
+                            <span class="text">Manage Face Pattern</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="manage">
+                    <li class="list" style="--clr:#f44336;">
+                        <a href="@Url.Action("ManagePro","Manager")">
+                            <span class="icon"><ion-icon name="newspaper-outline"></ion-icon></span>
+                            <span class="text">Manage Profile</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#ffa117;">
+                        <a href="@Url.Action("ManageWorkshift","Manager")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Manage WorkShift</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#4f088a;">
+                        <a href="@Url.Action("TimeKeeping","Manager")">
+                            <span class="icon"><ion-icon name="today-outline"></ion-icon></span>
+                            <span class="text">TimeKeeping</span>
+                        </a>
+                    </li>
+                    <li class="list " style="--clr:#2196f3;">
+                        <a href="@Url.Action("ReportStatis","Manager")">
+                            <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
+                            <span class="text">Report Statistics</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="cheif showcheif">
+                    <li class="list active" style="--clr:#f44336;">
+                        <a href="@Url.Action("ManageMenu","Chef")">
+                            <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                            <span class="text">Manage Menu</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#ffa117;">
+                        <a href="@Url.Action("ManageSupp","Chef")">
+                            <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                            <span class="text">Manage Supplier</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#4f088a;">
+                        <a href="@Url.Action("ManageMaterial","Chef")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Manage Material</span>
+                        </a>
+                    </li>
+                    <li class="list " style="--clr:#0fc70f;">
+                        <a href="@Url.Action("ViewRegis","Chef")">
+                            <span class="icon"><ion-icon name="clipboard-outline"></ion-icon></span>
+                            <span class="text">View Registration</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="staff">
+                    <li class="list" style="--clr:#f44336;">
+                        <a href="@Url.Action("Order", "Staff")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Order</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#ffa117;">
+                        <a href="@Url.Action("PersonalPro", "Staff")">
+                            <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                            <span class="text">Personal profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end menu -->
+    <!-- html cho phần nội dung -->
+    <div class="home-main open3">
+        <hr>
+        @using (Html.BeginForm("Addfood", "Chef", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="table-food">
+                <div class="khungtable">
+                    <div class="khungtren">
+                        <div class="order-right">
+                            <div class="rowtext">
+                                <p style="margin-right:8%">Food ID: </p>
+                                @Html.TextBoxFor(m => m.FoodID, "", new { @class = " ", placeholder = "Food ID" })
+                                @*<input type="text" placeholder="food ID">*@
+                            </div>
+                            <div class="rowtext">
+                                <p>Food Name: </p>
+                                @Html.TextBoxFor(m => m.FoodName, "", new { @class = " ", placeholder = "Food Name" })
+                                @*<input type="text" placeholder="food Name">*@
+                            </div>
+                            <div class="rowtext">
+                                <p>Description: </p>
+                                @Html.TextBoxFor(m => m.FoodDescrip, "", new { @class = " ", placeholder = "Food Description" })
+                                @*<input type="text" placeholder="Description">*@
+                            </div>
+                            <div class="rowtext">
+                                <p>Food Image: </p>
+                                <input type="file" placeholder="Chose file">
+                            </div>
+                        </div>
+                        <div class="order-image">
+                            <img src="/kitchen/images/hướng dương.jpg" alt="" width="100%">
+                        </div>
+                    </div>
+                    <div class="btn-order">
+                        <button type="submit" class="btn btn-success">Create</button>
+                        <a class="btn btn-danger" href="@Url.Action("ManageMenu","Chef")">Cancel</a>
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+    <!-- end nội dung -->
+
+    <script>
+        // script cho phần profile
+        let menuToggleprofile = document.querySelector('.menuToggle-profile');
+        let navigationprofile = document.querySelector('.navigation-profile')
+        menuToggleprofile.onclick = function () {
+            navigationprofile.classList.toggle('active')
+        }
+
+        // script cho phần option role
+        function show(a) {
+            document.querySelector('.navigation.open .text02').value = a;
+        }
+
+        let dropdown = document.querySelector('.dropdown');
+        dropdown.onclick = function () {
+            dropdown.classList.toggle('dropdownactive');
+        }
+
+        //script cho phần đổi menu
+        const changeadmin = document.querySelector('.change-option-admin');
+        const changemanage = document.querySelector('.change-option-manage');
+        const changecheif = document.querySelector('.change-option-cheif');
+        const changestaff = document.querySelector('.change-option-staff');
+        const admin = document.querySelector('.admin');
+        const manage = document.querySelector('.manage');
+        const cheif = document.querySelector('.cheif');
+        const staff = document.querySelector('.staff');
+
+        changeadmin.onclick = function () {
+            admin.classList.add('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changemanage.onclick = function () {
+            admin.classList.remove('showadmin');
+            manage.classList.add('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changecheif.onclick = function () {
+            admin.classList.remove('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.add('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changestaff.onclick = function () {
+            admin.classList.remove('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.add('showstaff');
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

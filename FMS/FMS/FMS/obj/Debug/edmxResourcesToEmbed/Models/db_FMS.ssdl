@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_FMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DEPARTMENT">
+    <Key>
+      <PropertyRef Name="_Department_id" />
+    </Key>
+    <Property Name="_Department_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Department_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="_Department_Phone" Type="varchar" MaxLength="10" />
+    <Property Name="_Department_Address" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="FACE">
+    <Key>
+      <PropertyRef Name="_Face_id" />
+    </Key>
+    <Property Name="_Face_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Face1" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="_Face2" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="_Face3" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="_Face4" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="INGREDIENT">
+    <Key>
+      <PropertyRef Name="_Material_id" />
+    </Key>
+    <Property Name="_Material_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Material_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="_Quantity_I" Type="int" />
+    <Property Name="_Unit" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LOGIN">
+    <Key>
+      <PropertyRef Name="_Username" />
+    </Key>
+    <Property Name="_Username" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="_Password" Type="nvarchar(max)" />
+    <Property Name="_Staff_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Role" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MENU">
+    <Key>
+      <PropertyRef Name="_Food_id" />
+    </Key>
+    <Property Name="_Food_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Food_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="_Description" Type="varchar" MaxLength="100" />
+    <Property Name="_Imagefood" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ORDERS">
+    <Key>
+      <PropertyRef Name="_Order_id" />
+    </Key>
+    <Property Name="_Order_id" Type="int" Nullable="false" />
+    <Property Name="_Food_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Staff_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Shift_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Order_date" Type="date" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'db_FMS.dbo.SPLIT_SHIFTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SPLIT_SHIFTS">
+    <Key>
+      <PropertyRef Name="_Shift_id" />
+      <PropertyRef Name="_Staff_id" />
+    </Key>
+    <Property Name="_Shift_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Staff_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_month" Type="int" />
+  </EntityType>
+  <EntityType Name="SPLIT_TIME">
+    <Key>
+      <PropertyRef Name="_Shift_id" />
+    </Key>
+    <Property Name="_Shift_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Shift_name" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Time_in" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="_Time_out" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="STAFF">
+    <Key>
+      <PropertyRef Name="_Staff_id" />
+    </Key>
+    <Property Name="_Staff_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Staff_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="_Birthday" Type="date" />
+    <Property Name="_Gender" Type="bit" />
+    <Property Name="_Identity_card" Type="varchar" MaxLength="12" />
+    <Property Name="_Position" Type="nvarchar" MaxLength="20" />
+    <Property Name="_phone_number" Type="varchar" MaxLength="10" />
+    <Property Name="_Ward" Type="nvarchar" MaxLength="20" />
+    <Property Name="_District" Type="nvarchar" MaxLength="20" />
+    <Property Name="_City" Type="nvarchar" MaxLength="20" />
+    <Property Name="_Department_id" Type="varchar" MaxLength="10" />
+    <Property Name="_Face_id" Type="varchar" MaxLength="10" />
+    <Property Name="_Image" Type="nvarchar(max)" />
+    <Property Name="_Ethnic" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="SUPPLIER">
+    <Key>
+      <PropertyRef Name="_Supplier_id" />
+    </Key>
+    <Property Name="_Supplier_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="_Supplier_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="_Supplier_phone" Type="varchar" MaxLength="11" />
+    <Property Name="_Supplier_address" Type="nvarchar" MaxLength="50" />
+    <Property Name="_Material_id" Type="varchar" MaxLength="10" />
+    <Property Name="_Quantity_S" Type="int" />
+    <Property Name="_Unit" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="_Shiftid">
+    <End Role="SPLIT_TIME" Type="Self.SPLIT_TIME" Multiplicity="1" />
+    <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPLIT_TIME">
+        <PropertyRef Name="_Shift_id" />
+      </Principal>
+      <Dependent Role="ORDERS">
+        <PropertyRef Name="_Shift_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="_Staff_id">
+    <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+    <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="_Staff_id" />
+      </Principal>
+      <Dependent Role="ORDERS">
+        <PropertyRef Name="_Staff_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Department_id">
+    <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="0..1" />
+    <End Role="STAFF" Type="Self.STAFF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTMENT">
+        <PropertyRef Name="_Department_id" />
+      </Principal>
+      <Dependent Role="STAFF">
+        <PropertyRef Name="_Department_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Face_id">
+    <End Role="FACE" Type="Self.FACE" Multiplicity="0..1" />
+    <End Role="STAFF" Type="Self.STAFF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FACE">
+        <PropertyRef Name="_Face_id" />
+      </Principal>
+      <Dependent Role="STAFF">
+        <PropertyRef Name="_Face_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Food_id">
+    <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
+    <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENU">
+        <PropertyRef Name="_Food_id" />
+      </Principal>
+      <Dependent Role="ORDERS">
+        <PropertyRef Name="_Food_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Material_id">
+    <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="0..1" />
+    <End Role="SUPPLIER" Type="Self.SUPPLIER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INGREDIENT">
+        <PropertyRef Name="_Material_id" />
+      </Principal>
+      <Dependent Role="SUPPLIER">
+        <PropertyRef Name="_Material_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shift_id">
+    <End Role="SPLIT_TIME" Type="Self.SPLIT_TIME" Multiplicity="1" />
+    <End Role="SPLIT_SHIFTS" Type="Self.SPLIT_SHIFTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPLIT_TIME">
+        <PropertyRef Name="_Shift_id" />
+      </Principal>
+      <Dependent Role="SPLIT_SHIFTS">
+        <PropertyRef Name="_Shift_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_id">
+    <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+    <End Role="LOGIN" Type="Self.LOGIN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="_Staff_id" />
+      </Principal>
+      <Dependent Role="LOGIN">
+        <PropertyRef Name="_Staff_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_id_SS">
+    <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
+    <End Role="SPLIT_SHIFTS" Type="Self.SPLIT_SHIFTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="_Staff_id" />
+      </Principal>
+      <Dependent Role="SPLIT_SHIFTS">
+        <PropertyRef Name="_Staff_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_FMSModelStoreContainer">
+    <EntitySet Name="DEPARTMENT" EntityType="Self.DEPARTMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FACE" EntityType="Self.FACE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INGREDIENT" EntityType="Self.INGREDIENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOGIN" EntityType="Self.LOGIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MENU" EntityType="Self.MENU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDERS" EntityType="Self.ORDERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SPLIT_TIME" EntityType="Self.SPLIT_TIME" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STAFF" EntityType="Self.STAFF" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUPPLIER" EntityType="Self.SUPPLIER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SPLIT_SHIFTS" EntityType="Self.SPLIT_SHIFTS" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SPLIT_SHIFTS].[_Shift_id] AS [_Shift_id], 
+    [SPLIT_SHIFTS].[_Staff_id] AS [_Staff_id], 
+    [SPLIT_SHIFTS].[_month] AS [_month]
+    FROM [dbo].[SPLIT_SHIFTS] AS [SPLIT_SHIFTS]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="_Shiftid" Association="Self._Shiftid">
+      <End Role="SPLIT_TIME" EntitySet="SPLIT_TIME" />
+      <End Role="ORDERS" EntitySet="ORDERS" />
+    </AssociationSet>
+    <AssociationSet Name="_Staff_id" Association="Self._Staff_id">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="ORDERS" EntitySet="ORDERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Department_id" Association="Self.FK_Department_id">
+      <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
+      <End Role="STAFF" EntitySet="STAFF" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Face_id" Association="Self.FK_Face_id">
+      <End Role="FACE" EntitySet="FACE" />
+      <End Role="STAFF" EntitySet="STAFF" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Food_id" Association="Self.FK_Food_id">
+      <End Role="MENU" EntitySet="MENU" />
+      <End Role="ORDERS" EntitySet="ORDERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Material_id" Association="Self.FK_Material_id">
+      <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+      <End Role="SUPPLIER" EntitySet="SUPPLIER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shift_id" Association="Self.FK_Shift_id">
+      <End Role="SPLIT_TIME" EntitySet="SPLIT_TIME" />
+      <End Role="SPLIT_SHIFTS" EntitySet="SPLIT_SHIFTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_id" Association="Self.FK_Staff_id">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="LOGIN" EntitySet="LOGIN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_id_SS" Association="Self.FK_Staff_id_SS">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="SPLIT_SHIFTS" EntitySet="SPLIT_SHIFTS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

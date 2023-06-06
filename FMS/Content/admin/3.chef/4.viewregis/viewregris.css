@@ -1,0 +1,18 @@
+.khungtable{
+    display: block !important;
+}
+.khung{
+    width: 30%;
+    height: 90%;
+}
+.khung .amount{
+    font-size: 3rem;
+}
+.listNotReceived{
+    margin-top: 30px;
+    width: 100%;
+}
+
+.btn-delete{
+    border: none;
+}

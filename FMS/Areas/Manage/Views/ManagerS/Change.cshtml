@@ -1,0 +1,173 @@
+﻿@using FMS.Models
+@model WorkShiftValidate
+@{
+    Layout = "~/Views/Shared/_logoutlayout.cshtml";
+    ViewBag.Title = "Change shift";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change shift</title>
+    <link rel="stylesheet" href="~/Content/admincss/menuadim/homepageadmin.css">
+    <link rel="stylesheet" href="~/Content/admincss/menuadim/manageall.css">
+    <link rel="stylesheet" href="~/Content/admin/2.manager/managerworkshift/changeshift.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!-- html cho phần menu -->
+    <div class="navigation open">
+        <div class="menuToggle">Manager</div>
+        <div class="main-menu">
+            <div class="menu-option">
+                <ul class="manage showmanage">
+                    <li class="list" style="--clr:#f44336;">
+                        <a href="@Url.Action("ManagePro","ManagerS")">
+                            <span class="icon"><ion-icon name="newspaper-outline"></ion-icon></span>
+                            <span class="text">Manage Profile</span>
+                        </a>
+                    </li>
+                    <li class="list active" style="--clr:#ffa117;">
+                        <a href="@Url.Action("ManageWorkshift","ManagerS")">
+                            <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+                            <span class="text">Manage WorkShift</span>
+                        </a>
+                    </li>
+                    <li class="list" style="--clr:#4f088a;">
+                        <a href="@Url.Action("TimeKeeping","ManagerS")">
+                            <span class="icon"><ion-icon name="today-outline"></ion-icon></span>
+                            <span class="text">TimeKeeping</span>
+                        </a>
+                    </li>
+                    <li class="list " style="--clr:#2196f3;">
+                        <a href="@Url.Action("ReportStatis","ManagerS")">
+                            <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
+                            <span class="text">Report Statistics</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end menu -->
+    <!-- html cho phần manage Account -->
+    <div class="home-main open3">
+        <div class="header-content">
+            <p>Change shifts</p>
+        </div>
+        <ol class="breadcrumb">
+            <li>
+                <i class="icon">
+                    <ion-icon name="person-outline"></ion-icon>
+                </i>
+                <a href="@Url.Action("ManageWorkshift","ManagerS")" ">Manage Work Shift</a>
+            </li>
+            <li>
+                <i class="icon">
+                    <ion-icon name="person-outline"></ion-icon>
+                </i>Change shifts
+            </li>
+        </ol>
+        @using (Html.BeginForm("Change", "ManagerS", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="table-food">
+                <div class="khungtable">
+                    <div class="container">
+                        <div class="rowtext">
+                            <p>Id Shift: </p>
+                            @Html.TextBoxFor(m => m.IDShift, "", new { @class = " ", placeholder = "ID Shift" })
+                            @*<input type="text">*@
+                        </div>
+                        <div class="rowtext">
+                            <p>Shift Name: </p>
+                            @Html.TextBoxFor(m => m.ShiftName, "", new { @class = " ", placeholder = "Shift Name" })
+                            @*<input type="text">*@
+                        </div>
+                        <div class="rowtext">
+                            <p>Shift start time: </p>
+                            @Html.TextBoxFor(m => m.ShiftStartTime, "", new { @class = " ", placeholder = "Shift Start Time" })
+                            @*<input type="text">*@
+                        </div>
+                        <div class="rowtext">
+                            <p>Shift end time: </p>
+                            @Html.TextBoxFor(m => m.ShiftEndTime, "", new { @class = " ", placeholder = "Shift End Time" })
+                            @*<input type="text">*@
+                        </div>
+                        <div class="btn-acept">
+                            <button type="submit" class="btn btn-success">Change</button>
+                            <a class="btn btn-danger" href="@Url.Action("ManageWorkshift","ManagerS")">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- end phần manage Account -->
+
+    <script>
+
+        // script cho phần profile
+        let menuToggleprofile = document.querySelector('.menuToggle-profile');
+        let navigationprofile = document.querySelector('.navigation-profile')
+        menuToggleprofile.onclick = function () {
+            navigationprofile.classList.toggle('active')
+        }
+
+        // script cho phần option role
+        function show(a) {
+            document.querySelector('.navigation.open .text02').value = a;
+        }
+
+        let dropdown = document.querySelector('.dropdown');
+        dropdown.onclick = function () {
+            dropdown.classList.toggle('dropdownactive');
+        }
+
+        //script cho phần đổi menu
+        const changeadmin = document.querySelector('.change-option-admin');
+        const changemanage = document.querySelector('.change-option-manage');
+        const changecheif = document.querySelector('.change-option-cheif');
+        const changestaff = document.querySelector('.change-option-staff');
+        const admin = document.querySelector('.admin');
+        const manage = document.querySelector('.manage');
+        const cheif = document.querySelector('.cheif');
+        const staff = document.querySelector('.staff');
+
+        changeadmin.onclick = function () {
+            admin.classList.add('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changemanage.onclick = function () {
+            admin.classList.remove('showadmin');
+            manage.classList.add('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changecheif.onclick = function () {
+            admin.classList.remove('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.add('showcheif');
+            staff.classList.remove('showstaff');
+        }
+        changestaff.onclick = function () {
+            admin.classList.remove('showadmin');
+            manage.classList.remove('showmanage');
+            cheif.classList.remove('showcheif');
+            staff.classList.add('showstaff');
+        }
+
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
